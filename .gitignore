@@ -1,4 +1,6 @@
 *.cache
 *.chback
 *.pyc
+vendor/
+.bundle/
 

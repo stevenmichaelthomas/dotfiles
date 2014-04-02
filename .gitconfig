@@ -1,14 +1,15 @@
 [user]
-  name = Jason Webster
-  email = jason@metalabdesign.com
+  name = Steven Thomas
+  email = steven.thomas@shopify.com
 
 [github]
-  user = jasonwebster
+  user = stevenmichaelthomas
   token = TOKEN
 
 [core]
   excludesfile = ~/.gitignore_global
   attributesfile = ~/.gitattributes_global
+  editor = subl
 
 [branch]
   autosetuprebase = always

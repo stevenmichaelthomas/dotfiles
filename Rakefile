@@ -8,9 +8,6 @@ def entries
   @files ||= Dir.entries( File.expand_path( '~/.dotfiles' ) ) - $exclude
 end
 
-
-
-
 desc 'Backup previous dotfiles.'
 task :backup do
   dir = File.expand_path File.join( '~' , '.dotfiles-backup', Time.now.to_i.to_s )
@@ -39,9 +36,12 @@ namespace :install do
     # Homebrew
     puts 'Please install homebrew' and exit 1 unless system 'which brew'
 
-    # Bundler
-    puts 'Please install bundler' and exit 1 unless system 'which bundle'
-    system 'bundle install'
+    # Sublime Text
+    puts 'Please install Sublime Text' and exit 1 unless system 'which sublime'
+
+    unless system 'subl'
+      system 'ln -s /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl /usr/local/bin/sublime'
+    end
   end
 
   desc 'Copy dotfiles over to home dir.'
@@ -53,11 +53,12 @@ namespace :install do
 
   desc 'Install required brew formulae'
   task :formulae do
-    %w(bash-completion git ruby-build hub).each do |f|
+    %w(bash-completion git rbenv ruby-build hub).each do |f|
       system "brew install #{f}"
     end
 
     # link up homebrew bash completion
+    puts 'Link up homebrew bash completion'
     system 'ln -s "/usr/local/Library/Contributions/brew_bash_completion.sh" "/usr/local/etc/bash_completion.d"'
   end
 
@@ -79,9 +80,11 @@ namespace :install do
 
 	desc 'Install ruby'
   task :ruby do
-    puts 'Installing ruby 2.0.0-p0 via rbenv install'
-    system 'rbenv install 2.0.0-p0'
-    system 'rbenv global 2.0.0-p0'
+    puts 'Installing ruby 2.1.1 via rbenv install'
+    system 'rbenv install 2.1.1'
+    system 'rbenv global 2.1.1'
+    system 'sudo gem install bundler'
+    system 'rbenv rehash'
 	end
 
   desc 'Run post-install tasks.'
@@ -91,7 +94,7 @@ namespace :install do
 		package_source = '~/.dotfiles/.sublime_packages'
 		package_target = '~/Library/Application\ Support/Sublime\ Text\ 2/Packages'
 
-		system "rm #{package_target}"
+		system "rm -rf #{package_target}"
 		system "ln -sF #{package_source} #{package_target}"
 
     puts "\n\n\n##################################################"

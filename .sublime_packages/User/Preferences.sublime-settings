@@ -8,11 +8,8 @@
 	"highlight_line": true,
 	"line_padding_bottom": 1,
 	"line_padding_top": 1,
-	"rulers":
-	[
-		80
-	],
 	"tab_size": 2,
+	"rulers": [80],
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true,
 	"word_wrap": false
