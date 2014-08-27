@@ -40,7 +40,7 @@ namespace :install do
     puts 'Please install Sublime Text' and exit 1 unless system 'which sublime'
 
     unless system 'subl'
-      system 'ln -s /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl /usr/local/bin/sublime'
+      system 'ln -s /Applications/Sublime\ Text\ 3.app/Contents/SharedSupport/bin/subl /usr/local/bin/sublime'
     end
   end
 
@@ -92,7 +92,7 @@ namespace :install do
 		puts "Linking ST2 packages"
 
 		package_source = '~/.dotfiles/.sublime_packages'
-		package_target = '~/Library/Application\ Support/Sublime\ Text\ 2/Packages'
+		package_target = '~/Library/Application\ Support/Sublime\ Text\ 3/Packages'
 
 		system "rm -rf #{package_target}"
 		system "ln -sF #{package_source} #{package_target}"

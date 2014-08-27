@@ -8,4 +8,5 @@ alias g="git"
 alias rake="bundle exec rake"
 alias fr="foreman run"
 alias fs="foreman start"
-
+alias kill3000="ps aux | awk '/3000/ {print $2}'"
+alias kill4000="ps aux | awk '/4000/ {print $2}'"
